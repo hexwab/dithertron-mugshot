@@ -1,0 +1,33 @@
+DITHERTRON
+
+This is a fork of 8-Bit Workshop's _Dithertron_ tool.  Take a mugshot,
+dither it and send it to the BBC through the cassette port!
+
+Recommended settings are "MODE 1", "Perceptual" colour and "Stucki" dithering.
+
+After the conference there'll be a GALLERY of people's pics, as well as SOURCE CODE and DISC IMAGES.
+
+Make a note of your picture ID and later you can download your pic and see it on your own hardware (or emulator).
+
+BBC MASTER (1986)
+* Upgraded BBC micro
+* 65SC12 (6502 variant) at 2MHz
+* 128KiB DRAM
+* 2MHz video bandwidth
+* Standard video resolutions 640x256@1bpp, 320x256@2bpp, 160x256@4bpp
+  (but you can overscan it!)
+* Cassette interface running at nominal 1200 baud
+  (but you can overclock it!)
+
+CAN I HACK IT?
+
+Sure! Try pausing or seeking the audio to see how the beeb reacts.
+The screen turns MAGENTA if it's detected something awry and has given
+up on this image.  How far can you push the tape interface?
+
+If you break the beeb, power-cycle it, type "*T." then "*/", then play
+"mugshot.wav" from the open VLC window.  Please leave it in the state
+you found it.
+
+Please don't try to break the webapp.  We all know you know how to
+break webapps.
