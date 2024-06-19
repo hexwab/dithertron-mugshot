@@ -1,86 +1,23 @@
-Dithertron
-==========
+Dithertron mugshot thing
+========================
 
-[Try it online!](https://8bitworkshop.com/dithertron/)
+As seen at [BSides Leeds 2023](https://sphere.chronosempire.org.uk/~HEx/gallery/), [LCSC 2023](https://sphere.chronosempire.org.uk/~HEx/tetley/), and [BSides Leeds 2024](https://sphere.chronosempire.org.uk/~HEx/gallery2/).
 
-This interactive web-based tool converts full-color images to full-screen 8-bit retro formats,
-performing cropping, resizing, palette selection, and dithering.
-
-Some formats (e.g. C64 multicolor, TMS9918A, ZX Spectrum, NES 5-color)
-split the screen into smaller sub-blocks that each can only display 2 to 4 colors of a larger palette.
-Neighboring sub-blocks may affect each other when dithering is enabled,
-so Dithertron chooses good colors for each sub-block and iterates until they stabilize.
-
-
-How To Use
-----------
-
-1. Upload an image, or select an example image from the pulldown.
-
-2. Choose a target format.
-
-3. Play with the sliders until you're happy with the result.
-
-4. Download the final image (PNG), download a binary file, or open an image viewer code sample in 8bitworkshop.
-
-
-Graphics Formats
-----------------
-
-These formats will export a sample 8bitworkshop project that displays the image:
-
-* C-64 Multi - 160 x 200, 16 colors, 4 colors per 4x8 block
-* C-64 Hires - 320 x 200, 16 colors, 2 colors per 8x8 block
-* NES (4 color, 240 tiles) - 160 x 96, 4 out of 64 colors
-* TMS9918A (Mode 2) - 256 x 192, 16 colors, 2 colors per 8x1 block
-* Apple ][ Hires - 140 x 192, 6 colors, 4 colors per 7x1 block
-* Atari ANTIC D - 160 x 96, 4 out of 256 colors
-* Atari VCS - 40 x 192, 2 out of 256 colors
-* Bally Astrocade - 160 x 98, 4 out of 256 colors
-
-Other formats:
-
-* NES (4 color, full screen) - 256 x 240, 4 out of 64 colors
-* NES (5 color, full screen) - 256 x 240, 5 out of 64 colors
-* Atari 7800 (160A) - 160 x 240, 4 out of 256 colors
-* Atari 7800 (160B) - 160 x 240, 12 out of 256 colors
-* Sega Master System - 176 x 144, 16 out of 64 colors
-* ZX Spectrum - 256 x 192, 8 colors, 2 colors per 8x8 block
-* BBC Micro (mode 2) - 160 x 256, 8 colors
-* Amstrad CPC (mode 0) - 160 x 200, 16 out of 27 colors
-* Apple ][ Double-Hires - 140 x 192, 16 colors
-* Apple ][ Lores - 40 x 48, 16 colors
-* Fairchild Channel F - 102 x 58, 4 out of 4 colors
-* PC EGA Mode 0Dh - 320 x 200, 16 out of 16 colors
-* PC EGA Mode 10h - 640 x 350, 16 out of 16 colors
-* Williams Arcade - 304 x 256, 16 out of 256 colors
-* PICO-8 - 128 x 128, 16 colors
-* TIC-80 - 240 x 136, 16 colors
-
-
-Development
+Parts
 -----
+* UI (`src/` and `index.html`): lightly forked from the [original dithertron](https://github.com/sehugg/dithertron) to add Beeb display modes, webcam input, and [PlayUEF](https://github.com/8bitkick/PlayUEF) integration
 
-Install modules:
-~~~~
-npm i
-~~~~
-Build:
-~~~~
-./node_modules/.bin/tsc
-~~~~
+* Node server (`server/`): accepts images over a websocket and runs them through [exomizer](https://bitbucket.org/magli143/exomizer/wiki/Home), returning the result for playback in the browser
+     also keeps copies of submitted images for the gallery
 
-Then open `index.html` in browser.
+* Beeb listener (`mugshot/`): listens for and decompresses images coming in over the cassette port
 
+* Gallery (`gallery/`): updates the gallery page as new images arrive
 
-TODO
-----
+Building
+--------
+Good luck! :)
 
-* Palette editing
-* Search for optimal crop window
-* Check pixel-exact source images
-* Interlaced modes (VCS color)
-* Refresh retains mode settings
-* Custom width and height (crop rect for non-full-screen)
-* Faster closest color lookup
-
+License
+-------
+Everything by me (Tom Hargreaves <hex@sphere.chronosempire.org.uk>) is in the public domain.  Other software is under its own licenses.
